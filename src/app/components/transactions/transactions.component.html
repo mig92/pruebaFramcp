@@ -21,7 +21,17 @@
         <tr *ngFor="let transaction of transactionList">
           <td *ngIf="transaction.transactionId != null; else idTrans">{{transaction.transactionId}}</td>
           <td *ngIf="transaction.playerId == id_route; else idPlayer">{{transaction.playerId}}</td>
-          <td *ngIf="(transaction.transactionType >= 0) || (transactionType <= 6); else transType">{{transaction.transactionType}}</td>
+
+          <td [ngSwitch]="transaction.transactionType">
+            <span *ngSwitchCase="0">Authorize</span>
+            <span *ngSwitchCase="1">Capture</span>
+            <span *ngSwitchCase="2">Bet</span>
+            <span *ngSwitchCase="3">Win</span>
+            <span *ngSwitchCase="4">Deposit</span>
+            <span *ngSwitchCase="5">Withdraw</span>
+            <span *ngSwitchDefault>Unknown</span>
+          </td>
+
           <td *ngIf="transaction.parentTransaction != null; else transactionPlayer">{{transaction.parentTransaction}}</td>
           <td *ngIf="transaction.transactionDateUTC != null; else date">{{transaction.transactionDateUTC | date:'long'}}</td>
           <td *ngIf="transaction.amount != null; else amount">{{transaction.amount}}</td>
@@ -36,7 +46,6 @@
 
 <ng-template #idPlayer><td>{{id_route}}</td></ng-template>
 <ng-template #idTrans><td>-</td></ng-template>
-<ng-template #transType><td>Transaction type out of range</td></ng-template>
 <ng-template #transactionPlayer><td>-</td></ng-template>
 <ng-template #date><td>-</td></ng-template>
 <ng-template #amount><td>-</td></ng-template>
