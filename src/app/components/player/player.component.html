@@ -1,7 +1,7 @@
 <h4 class="col-4 text-left">Player List</h4>
 <div class="row m-5">
-  <div class="col">
-    <table class="table">
+  <div class="col text-center">
+    <table class="table table-bordered">
       <thead class="thead-dark">
         <tr>
           <th>Player Id</th>
@@ -21,7 +21,6 @@
           <td *ngIf="player.fullName != null; else fullName">{{player.fullName}}</td>
           <td *ngIf="player.registrationDateUTC != null; else date">{{player.registrationDateUTC | date:'long' }}</td>
           <td><button (click)= "verTransacciones(player.playerId)" type="button" class="btn btn-info">See transactions</button></td>
-          <td>
         </tr>
       </tbody>
     </table>
