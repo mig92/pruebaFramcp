@@ -6,11 +6,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { PlayerComponent } from './components/player/player.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 import { PlayerService } from './services/player.service';
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs, 'es');
+
+import { LOCALE_ID } from '@angular/core';
 
 
 import { ROUTES } from './app.routes';
@@ -18,16 +24,17 @@ import { ROUTES } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
     PlayerComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES, {useHash:true})
   ],
-  providers: [PlayerService],
+  providers: [PlayerService,
+    { provide: LOCALE_ID,useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

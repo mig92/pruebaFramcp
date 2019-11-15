@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { PlayerComponent } from './components/player/player.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 
 
 export const ROUTES: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+  {path: 'player', component: PlayerComponent},
+  {path: 'player/:id', component: TransactionsComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'player'},
+  {path: '**', pathMatch: 'full', redirectTo: 'player'}
 ];

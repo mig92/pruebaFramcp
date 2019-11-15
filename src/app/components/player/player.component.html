@@ -1,1 +1,37 @@
-<p>player works!</p>
+<h4 class="col-4 text-left">Player List</h4>
+<div class="row m-5">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Player Id</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Fullname</th>
+          <th>Registration Date</th>
+          <th>Transactions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let player of playerList;">
+          <td *ngIf="player.playerId != null; else idPlayer">{{player.playerId}}</td>
+          <td *ngIf="player.userName != null; else userName">{{player.userName}}</td>
+          <td *ngIf="player.password != null; else password">{{player.password}}</td>
+          <td *ngIf="player.fullName != null; else fullName">{{player.fullName}}</td>
+          <td *ngIf="player.registrationDateUTC != null; else date">{{player.registrationDateUTC | date:'long' }}</td>
+          <td><button (click)= "verTransacciones(player.playerId)" type="button" class="btn btn-info">See transactions</button></td>
+          <td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<ng-template #idPlayer><td>Error obtaining player ID</td></ng-template>
+<ng-template #userName><td>Not userName</td></ng-template>
+<ng-template #password><td>Not password</td></ng-template>
+<ng-template #fullName><td>Full name not assigned</td></ng-template>
+<ng-template #date><td>-</td></ng-template>

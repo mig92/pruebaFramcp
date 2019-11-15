@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 
@@ -7,7 +7,7 @@ import { PlayerService } from 'src/app/services/player.service';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent{
 
   playerList:Player[] = [];
 
@@ -16,13 +16,14 @@ export class PlayerComponent implements OnInit {
 
     this._playerService.getPlayers().subscribe((data: any) =>{
       this.playerList = data;
-      console.log(this.playerList);
-    })
+    });
 
     }
 
-  ngOnInit() {
-  }
+    verTransacciones(index:number){
+      this.router.navigate( ['/player', index]);
+    }
+
 
 }
 
